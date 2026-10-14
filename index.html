@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'">
+<title>DemoBudget</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Crect width=%2216%22 height=%2216%22 rx=%223%22 fill=%22%230b6e4f%22/%3E%3C/svg%3E">
+<link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+<header><h1>DemoBudget</h1><p class="tag">Plan a timed hackathon demo. Offline, local only. Data stays in this browser.</p></header>
+<main>
+<section aria-labelledby="limit-h">
+  <h2 id="limit-h">Video limit</h2>
+  <form id="limit-form" novalidate>
+    <label for="limit">Limit in whole seconds</label>
+    <input id="limit" inputmode="numeric" autocomplete="off" aria-describedby="limit-err">
+    <button type="submit">Set limit</button>
+    <p id="limit-err" class="err" role="alert"></p>
+  </form>
+  <p id="summary" class="summary" aria-live="polite"></p>
+  <p id="storage-msg" class="err" role="alert"></p>
+</section>
+<section aria-labelledby="sec-h">
+  <h2 id="sec-h">Sections</h2>
+  <form id="section-form" novalidate>
+    <label for="title">Title</label>
+    <input id="title" autocomplete="off" maxlength="600" aria-describedby="title-err">
+    <p id="title-err" class="err" role="alert"></p>
+    <label for="seconds">Duration in whole seconds</label>
+    <input id="seconds" inputmode="numeric" autocomplete="off" aria-describedby="seconds-err">
+    <p id="seconds-err" class="err" role="alert"></p>
+    <button type="submit" id="save">Add section</button>
+    <button type="button" id="cancel-edit" hidden>Cancel edit</button>
+  </form>
+  <ol id="list" aria-label="Demo sections in order"></ol>
+</section>
+<section aria-labelledby="exp-h">
+  <h2 id="exp-h">Export and import</h2>
+  <div class="row">
+    <button type="button" id="download">Download cue sheet (.md)</button>
+    <button type="button" id="example">Load fictional example</button>
+    <button type="button" id="reset">Reset all</button>
+  </div>
+  <dialog id="reset-confirm" aria-labelledby="reset-h" aria-describedby="reset-q">
+    <h3 id="reset-h">Reset plan?</h3>
+    <p id="reset-q">Delete all sections and the limit? This cannot be undone.</p>
+    <button type="button" id="reset-no">Keep my plan</button>
+    <button type="button" id="reset-yes">Yes, reset</button>
+  </dialog>
+  <h3>Markdown preview</h3>
+  <pre id="preview" tabindex="0" aria-label="Markdown cue sheet preview"></pre>
+  <label for="import-file">Reopen an exported cue sheet file</label>
+  <input type="file" id="import-file" accept=".md,text/markdown,text/plain">
+  <label for="import-text">Or paste a cue sheet</label>
+  <textarea id="import-text" rows="6"></textarea>
+  <button type="button" id="import">Import pasted cue sheet</button>
+  <p id="import-msg" class="err" role="alert"></p>
+</section>
+</main>
+<footer><p>DemoBudget. MIT license. No accounts, no analytics, no external runtime requests.</p></footer>
+<script type="module" src="src/app.js"></script>
+</body>
+</html>

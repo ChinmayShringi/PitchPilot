@@ -1,0 +1,14 @@
+{
+  "name": "demobudget",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Offline planner for timed hackathon demo videos",
+  "license": "MIT",
+  "scripts": {
+    "start": "node scripts/serve.mjs 8080",
+    "test": "npm run check && node --test test/*.test.js",
+    "coverage": "npm run check && node --test --experimental-test-coverage test/*.test.js",
+    "check": "for f in src/*.js scripts/*.mjs test/*.js; do node --check \"$f\" || exit 1; done"
+  }
+}
